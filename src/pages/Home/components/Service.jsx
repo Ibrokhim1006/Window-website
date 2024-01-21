@@ -242,17 +242,6 @@ function Service() {
                     </div>
                     <div className="mt-[20px] lg:mt-[55px] w-full flex flex-col gap-4 ">
                         {data?.length > 0 && data.map((item, index) => (
-                            // <div key={item.id} className="collapse collapse-arrow ">
-                            //     <input type="radio" name="my-accordion-2" />
-                            //     <div className="collapse-title text-[18px] lg:text-[20px] xl:text-[25px] font-semibold px-0 text-left">
-                            //         {item.title}
-                            //     </div>
-                            //     <div className="collapse-content px-0 pr-[30px] lg:pr-[50px] text-justify lg:text-left">
-                            //         <p className="text-[15px] lg:text-[16px] xl:text-[20px] font-normal" >
-                            //             {item.text}
-                            //         </p>
-                            //     </div>
-                            // </div>
                             <Accordion open={open === index + 1} icon={<Icon id={index + 1} open={open} />} className={`${open === index + 1 ? 'bg-white' : 'bg-transparent'} px-4`}>
                                 <AccordionHeader onClick={() => handleOpen(index + 1)} className="border-b-0">
                                     <div className="text-[18px] lg:text-[20px] xl:text-[21px] font-semibold px-0 text-left">

@@ -1,4 +1,5 @@
 import React, { memo, useState } from 'react';
+import { Tooltip } from "@material-tailwind/react";
 import { BsTelephone, BsXLg, BsTelephoneFill } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import vk from "../assets/vk.svg";
@@ -13,34 +14,42 @@ function ContactInfo() {
         <div>
             {visible && (
                 <span className='fixed bottom-[85px] right-8 flex flex-col gap-[5px] z-10 animate-wiggle'>
-                    <Link to={"/contact"}>
-                        <div  data-tip="Контакт">
+                    <Tooltip content="Контакт" className="z-50 p-1 bg-black/70">
+                        <Link to={"/contact"}>
+                            <div>
+                                <span className='rounded-full w-12 bg-white h-12 flex items-center justify-center cursor-pointer'>
+                                    <BsTelephoneFill className="text-green-700" />
+                                </span>
+                            </div>
+                        </Link>
+                    </Tooltip>
+                    <Tooltip content="Телеграм" className="z-50 p-1 bg-black/70">
+                        <div>
                             <span className='rounded-full w-12 bg-white h-12 flex items-center justify-center cursor-pointer'>
-                                <BsTelephoneFill className="text-green-700" />
+                                <a href='https://t.me/+79626841122' target='_blank'>
+                                    <img src={tg} alt="vk" className="w-[28px] lg:w-[32px] rounded-full" />
+                                </a>
                             </span>
                         </div>
-                    </Link>
-                    <div  data-tip="Телеграм">
-                        <span className='rounded-full w-12 bg-white h-12 flex items-center justify-center cursor-pointer'>
-                            <a href='https://t.me/+79626841122' target='_blank'>
-                                <img src={tg} alt="vk" className="w-[28px] lg:w-[32px] rounded-full" />
-                            </a>
-                        </span>
-                    </div>
-                    <div  data-tip="WhatsApp">
-                        <span className='rounded-full w-12 bg-white h-12 flex items-center justify-center cursor-pointer'>
-                            <a href='https://wa.me/79626841122' target='_blank'>
-                                <img src={wh} alt="wh" className="w-[28px] lg:w-[32px] rounded-full" />
-                            </a>
-                        </span>
-                    </div>
-                    <div  data-tip="вКонтакте">
-                        <span className='rounded-full w-12 bg-white h-12 flex items-center justify-center cursor-pointer'>
-                            <a href='https://vk.com/elitplastspb' target='_blank'>
-                                <img src={vk} alt="wh" className="w-[28px] lg:w-[32px] rounded-full" />
-                            </a>
-                        </span>
-                    </div>
+                    </Tooltip>
+                    <Tooltip content="WhatsApp" className="z-50 p-1 bg-black/70">
+                        <div>
+                            <span className='rounded-full w-12 bg-white h-12 flex items-center justify-center cursor-pointer'>
+                                <a href='https://wa.me/79626841122' target='_blank'>
+                                    <img src={wh} alt="wh" className="w-[28px] lg:w-[32px] rounded-full" />
+                                </a>
+                            </span>
+                        </div>
+                    </Tooltip>
+                    <Tooltip content="вКонтакте" className="z-50 p-1 bg-black/70">
+                        <div>
+                            <span className='rounded-full w-12 bg-white h-12 flex items-center justify-center cursor-pointer'>
+                                <a href='https://vk.com/elitplastspb' target='_blank'>
+                                    <img src={vk} alt="wh" className="w-[28px] lg:w-[32px] rounded-full" />
+                                </a>
+                            </span>
+                        </div>
+                    </Tooltip>
                 </span>
             )}
 
