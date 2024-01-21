@@ -1,10 +1,16 @@
-import { memo } from "react";
+import { memo, useCallback, useState } from "react";
 import { Link } from "react-router-dom";
+import {
+    Accordion,
+    AccordionHeader,
+    AccordionBody,
+} from "@material-tailwind/react";
 import d3Icons_1 from "../../../assets/3dicons (1).png";
 import d3Icons_2 from "../../../assets/3dicons (2).png";
 import d3Icons_3 from "../../../assets/3dicons (3).png";
 import d3Icons_4 from "../../../assets/3dicons (4).png";
 import InstallationProcess2 from "../../../assets/process-img-2.png";
+import Title from "./Title";
 const data = [
     {
         id: Math.random().toString(),
@@ -33,17 +39,28 @@ const data = [
     },
 ];
 
+function Icon({ id, open }) {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="#DFC38E"
+            className={`${id === open ? "rotate-180" : ""} h-5 w-5 transition-transform`}
+        >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
+    );
+}
+
 // million-ignore
 function Service() {
+    const [open, setOpen] = useState(0);
 
-    // close accordion
-    const clickHandler = (e, index) => {
-        let collapseArrow = document.querySelectorAll('.collapse-arrow');
-        let input = collapseArrow[index].querySelector('input');
-        if (input.checked) {
-            input.checked = false;
-        }
-    }
+    const handleOpen = useCallback(value => {
+        setOpen(open === value ? 0 : value);
+    }, [open]);
 
     return (
         <div className="section py-20">
@@ -107,7 +124,7 @@ function Service() {
             <div className="flex mb-24 justify-center lg:justify-between px-[20px] sm:px-[20px] lg:px-[80px] xl:px-[100px] flex-wrap-reverse lg:flex-nowrap gap-[50px]">
                 <div className="text-box w-full text-center lg:text-left lg:w-[50%] flex gap-4 justify-center flex-col"
                 >
-                    <div className="flex items-center gap-3 text-[23px] lg:text-[30px] xl:text-[45px] justify-center md:justify-start flex-wrap 2xl:flex-nowrap">
+                    <div className="flex items-center gap-3 text-[23px] lg:text-[30px] xl:text-[45px] justify-center md:justify-start flex-wrap">
                         {"Дополнительные услуги".split(" ").map((item, index) => (
                             <span
                                 key={Math.random().toString()}
@@ -211,7 +228,7 @@ function Service() {
             </div>
 
             {/* row 4 */}
-            <div className="flex mb-24 justify-center lg:justify-between px-[15px] sm:px-[20px] lg:px-[80px] xl:px-[100px] flex-wrap-reverse lg:flex-nowrap gap-[50px] items-start">
+            <div className="flex mb-24 justify-center lg:justify-between px-[15px] sm:px-[20px] lg:px-[80px] xl:px-[100px] flex-wrap-reverse lg:flex-nowrap  gap-[50px] items-start">
                 <div
                     className="img-box"
                     data-aos="fade-left"
@@ -220,31 +237,36 @@ function Service() {
                     <img src={d3Icons_4} alt="icon" className="w-full h-[300px] md:h-full" />
                 </div>
                 <div className="text-box w-full text-center lg:text-left lg:w-[50%] flex gap-4 justify-center flex-col">
-                    <div className="flex items-center gap-3 text-[23px] lg:text-[30px] xl:text-[45px] justify-center md:justify-start flex-wrap 2xl:flex-nowrap">
-                        {"Ответы на частые вопросы!".split(" ").map((item, index) => (
-                            <span
-                                key={Math.random().toString()}
-                                className="title font-bold uppercase font-Montserrat"
-                                data-aos="fade-right"
-                                data-aos-delay={500 + (index + 1) * 100}
-                            >
-                                {item}
-                            </span>
-                        ))}
+                    <div className="flex items-center gap-3 text-[23px] lg:text-[30px] xl:text-[45px] justify-center md:justify-start flex-wrap">
+                        <Title />
                     </div>
-                    <div className="mt-[20px] lg:mt-[55px] w-full">
+                    <div className="mt-[20px] lg:mt-[55px] w-full flex flex-col gap-4 ">
                         {data?.length > 0 && data.map((item, index) => (
-                            <div key={item.id} className="collapse collapse-arrow ">
-                                <input type="radio" name="my-accordion-2" />
-                                <div className="collapse-title text-[18px] lg:text-[20px] xl:text-[25px] font-semibold px-0 text-left">
-                                    {item.title}
-                                </div>
-                                <div className="collapse-content px-0 pr-[30px] lg:pr-[50px] text-justify lg:text-left">
-                                    <p className="text-[15px] lg:text-[16px] xl:text-[20px] font-normal" >
-                                        {item.text}
-                                    </p>
-                                </div>
-                            </div>
+                            // <div key={item.id} className="collapse collapse-arrow ">
+                            //     <input type="radio" name="my-accordion-2" />
+                            //     <div className="collapse-title text-[18px] lg:text-[20px] xl:text-[25px] font-semibold px-0 text-left">
+                            //         {item.title}
+                            //     </div>
+                            //     <div className="collapse-content px-0 pr-[30px] lg:pr-[50px] text-justify lg:text-left">
+                            //         <p className="text-[15px] lg:text-[16px] xl:text-[20px] font-normal" >
+                            //             {item.text}
+                            //         </p>
+                            //     </div>
+                            // </div>
+                            <Accordion open={open === index + 1} icon={<Icon id={index + 1} open={open} />} className={`${open === index + 1 ? 'bg-white' : 'bg-transparent'} px-4`}>
+                                <AccordionHeader onClick={() => handleOpen(index + 1)} className="border-b-0">
+                                    <div className="text-[18px] lg:text-[20px] xl:text-[21px] font-semibold px-0 text-left">
+                                        {item.title}
+                                    </div>
+                                </AccordionHeader>
+                                <AccordionBody>
+                                    <div className="px-0 pr-[30px] lg:pr-[50px] text-justify lg:text-left py-[20px] pl-[10px] lg:pl-[16px]">
+                                        <p className="text-[15px] lg:text-[16px] xl:text-[18px] font-normal" style={{ lineHeight: "26px" }} >
+                                            {item.text}
+                                        </p>
+                                    </div>
+                                </AccordionBody>
+                            </Accordion>
                         ))}
                     </div>
                 </div>

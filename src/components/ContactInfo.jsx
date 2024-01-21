@@ -14,27 +14,27 @@ function ContactInfo() {
             {visible && (
                 <span className='fixed bottom-[85px] right-8 flex flex-col gap-[5px] z-10 animate-wiggle'>
                     <Link to={"/contact"}>
-                        <div className="tooltip" data-tip="Контакт">
+                        <div  data-tip="Контакт">
                             <span className='rounded-full w-12 bg-white h-12 flex items-center justify-center cursor-pointer'>
                                 <BsTelephoneFill className="text-green-700" />
                             </span>
                         </div>
                     </Link>
-                    <div className="tooltip" data-tip="Телеграм">
+                    <div  data-tip="Телеграм">
                         <span className='rounded-full w-12 bg-white h-12 flex items-center justify-center cursor-pointer'>
                             <a href='https://t.me/+79626841122' target='_blank'>
                                 <img src={tg} alt="vk" className="w-[28px] lg:w-[32px] rounded-full" />
                             </a>
                         </span>
                     </div>
-                    <div className="tooltip" data-tip="WhatsApp">
+                    <div  data-tip="WhatsApp">
                         <span className='rounded-full w-12 bg-white h-12 flex items-center justify-center cursor-pointer'>
                             <a href='https://wa.me/79626841122' target='_blank'>
                                 <img src={wh} alt="wh" className="w-[28px] lg:w-[32px] rounded-full" />
                             </a>
                         </span>
                     </div>
-                    <div className="tooltip" data-tip="вКонтакте">
+                    <div  data-tip="вКонтакте">
                         <span className='rounded-full w-12 bg-white h-12 flex items-center justify-center cursor-pointer'>
                             <a href='https://vk.com/elitplastspb' target='_blank'>
                                 <img src={vk} alt="wh" className="w-[28px] lg:w-[32px] rounded-full" />

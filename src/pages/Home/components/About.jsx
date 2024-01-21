@@ -75,13 +75,12 @@ function About() {
             <img src={image8} alt="" className="absolute left-0 top-[10px] h-[250px] lg:h-[350x] xl:h-[500px]" />
             <img src={image7} alt="" className="absolute right-0 bottom-0 hidden xl:block" />
             <h2 className="title text-center flex items-center justify-center gap-3 flex-wrap text-[40px] lg:text-[45px] xl:text-[50px] pt-[30px] lg:pt-[60px] xl:pt-[83px] pb-[15px] lg:pb-[36px] xl:pb-[59px]">
-                {"Почему мы?".split(" ").map((item, index) => (
-                    <span
-                        key={Math.random().toString()}
-                        data-aos="fade-right"
-                        data-aos-delay={500 + (index + 1) * 150}
-                    >{item}</span>
-                ))}
+                <span
+                    data-aos="fade-right"
+                    data-aos-delay={500}
+                >Почему мы?</span>
+                {/* {"Почему мы?".split(" ").map((item, index) => (
+                ))} */}
             </h2>
             <div
                 className="grid lg:grid-cols-1 xl:grid-cols-2 pt-[59px] pb-[89px] rounded-[15px] px-[50px] lg:px-[100px] xl:px-[100px] gap-[81px]"
