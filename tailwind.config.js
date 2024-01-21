@@ -27,6 +27,6 @@ export default withMT({
     },
   },
   // eslint-disable-next-line no-undef
-  plugins: [require("daisyui")],
+  plugins: [],
 })
 
