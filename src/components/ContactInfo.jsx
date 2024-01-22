@@ -53,7 +53,7 @@ function ContactInfo() {
                 </span>
             )}
 
-            <span class="fixed bottom-8 right-8 flex h-12 w-12 z-10 cursor-pointer z-10" onClick={() => setVisible(!visible)}>
+            <span class="fixed bottom-8 right-8 flex h-12 w-12 z-10 cursor-pointer" onClick={() => setVisible(!visible)}>
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#dfc38e] opacity-75"></span>
                 <span class="relative rounded-full h-12 w-12 bg-[#dfc38e] flex items-center justify-center animate-wiggle">
                     {visible ? (
