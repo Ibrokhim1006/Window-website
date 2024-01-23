@@ -8,6 +8,7 @@ import Info from "../../components/Info";
 import FreeConsultation from "../../components/FreeConsultation";
 import { wooden_data, wooden_data_images } from "../../services/wooden/wooden_data";
 import { glassUnits_data } from "../../services/wooden/glassUnits_data";
+import { about_data } from "../../services/wooden/about";
 import StructuresModal from "../../components/StructuresModal";
 import Modal from "../../components/Modal";
 import ContentModal from "./components/ContentModal";
@@ -115,7 +116,7 @@ const WoodenWindows = () => {
 
             {/* info */}
             <Info
-                title="Деревянные окна"
+                data={about_data}
             />
 
             {/* slide */}

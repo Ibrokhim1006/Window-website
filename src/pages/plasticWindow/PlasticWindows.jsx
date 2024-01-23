@@ -13,6 +13,7 @@ import StructuresModal from "../../components/StructuresModal";
 import ContentModal from "./components/ContentModal";
 import ContentModalGlassunits from "./components/ContentModalGlassunits";
 import { plastic_data, plastic_data_images } from "../../services/plastic/plastic_data";
+import { about_data } from "../../services/plastic/about";
 import { glassUnits_data } from "../../services/plastic/glassUnits_data";
 
 const PlasticWindows = () => {
@@ -31,7 +32,6 @@ const PlasticWindows = () => {
 
   // open glassunits modal
   const openModalHandlerGlassUnits = useCallback(value => {
-    console.log(value);
     setOpenGlassUnits({ open: true, data: value });
   }, [openGlassUnits])
 
@@ -116,7 +116,7 @@ const PlasticWindows = () => {
 
       {/* info */}
       <Info
-        title="ИЗДЕЛИЯ ИЗ ПВХ"
+        data={about_data}
       />
 
       {/* slide */}

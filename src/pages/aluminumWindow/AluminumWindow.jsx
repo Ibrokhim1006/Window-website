@@ -11,6 +11,7 @@ import Modal from "../../components/Modal";
 import ContentModal from "./components/ContentModal";
 import { aluminium_data, aluminium_data_images } from "../../services/aluminium/aluminuim_data";
 import { glassUnits_data } from "../../services/aluminium/glassUnits_data";
+import { about_data } from "../../services/aluminium/about";
 import ContentModalGlassunits from "./components/ContentModalGlassunits";
 import heroList from "../../assets/heroList.svg";
 import banner from '../../assets/Plastic-page-hero.png';
@@ -115,7 +116,7 @@ const AluminumWindows = () => {
 
             {/* info */}
             <Info
-                title="Алюминиевые системы"
+                data={about_data}
             />
 
             {/* slide */}

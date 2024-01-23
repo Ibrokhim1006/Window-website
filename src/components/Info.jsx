@@ -1,32 +1,41 @@
-import { memo } from "react";
+import { memo, useCallback, useState } from "react";
+import {
+    Accordion,
+    AccordionHeader,
+    AccordionBody,
+} from "@material-tailwind/react";
 
-const data = [
-    {
-        id: Math.random().toString(),
-        title: "Прочность и долговечность",
-        text: "алюминий имеет высокую прочность, что делает окна из него стойкими к внешним воздействиям и позволяет им прослужить долгое время без потери своих качеств."
-    },
-    {
-        id: Math.random().toString(),
-        title: "Энергоэффективност",
-        text: "алюминий имеет высокую прочность, что делает окна из него стойкими к внешним воздействиям и позволяет им прослужить долгое время без потери своих качеств. алюминий имеет высокую прочность, что делает окна из него стойкими к внешним воздействиям и позволяет им прослужить долгое время без потери своих качеств."
-    },
-    {
-        id: Math.random().toString(),
-        title: "Легкость",
-        text: "алюминий имеет высокую прочность, что делает окна из него стойкими к внешним воздействиям и позволяет им прослужить долгое время без потери своих качеств. алюминий имеет высокую прочность, что делает окна из него стойкими к внешним воздействиям и позволяет им прослужить долгое время без потери своих качеств. алюминий имеет высокую прочность, что делает окна из него стойкими к внешним воздействиям и позволяет им прослужить долгое время без потери своих качеств."
-    },
-];
+function Icon({ id, open }) {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="#DFC38E"
+            className={`${id === open ? "rotate-180" : ""} h-5 w-5 transition-transform`}
+        >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
+    );
+}
 
 // million-ignore
 function Info(props) {
+    const { data } = props;
+    const [open, setOpen] = useState(0);
+
+    const handleOpen = useCallback(value => {
+        setOpen(open === value ? 0 : value);
+    }, [open]);
+
     return (
         <section
             className="px-4 md:px-20 mt-[153px] mb-[164px] pt-[50px] lg:pt-[76px] pb-[100px] lg:pb-[164px] lg:px-32 bg-[#212121] text-white"
             style={{ fontStyle: "normal" }}
         >
             <h1 className="title uppercase text-center mb-10 font-Montserrat font-bold flex items-center gap-3 flex-wrap justify-center text-[23px] lg:text-[35px] xl:text-[45px]">
-                {props.title?.split(" ").map((item, index) => (
+                {data.title?.split(" ").map((item, index) => (
                     <span
                         key={Math.random().toString()}
                         data-aos="fade-right"
@@ -39,43 +48,40 @@ function Info(props) {
                     data-aos="fade-right"
                     data-aos-delay={1000}
                 >
-                    Алюминиевые окна, двери, стоечно-ригельные фасадные системы и прочие конструкции отличаются повышенной энергоэффективностью и функциональностью. Материал можно использовать для формирования конструкций различных форм и размеров, способных обеспечивать отличную шумоизоляцию, теплоизоляцию и защиту от посягательств третьих лиц со взломом.
+                    {data.textTop}
                 </span>
                 <span
                     data-aos="fade-right"
                     data-aos-delay={1300}
                 >
-                    Алюминий представляет собой весьма малый по весу и, в то же время, крайне прочный материал. Его можно применять как для изготовления небольших окон, так и для остекления обширных зимних садов и террас.
+                    {data.textCenter}
                 </span>
-                <span
-                    data-aos="fade-right"
-                    data-aos-delay={1600}
-                >
-                    Профильные системы, спроектированные на базе алюминиевых конструкций, делятся на холодные и теплые. Холодные системы изготавливаются исключительно из алюминия, а теплые формируются из двух алюминиевых составляющих, которые соединены посредством особой термической прокладки.
-                </span>
+                {data.textBottom && (
+                    <span
+                        data-aos="fade-right"
+                        data-aos-delay={1600}
+                    >
+                        {data.textBottom}
+                    </span>
+                )}
             </div>
 
             <div className="mt-[40px] lg:mt-[55px] w-full md:w-[70%] lg:w-[60%]">
-                {data?.length > 0 && data.map((item, index) => (
-                    <div
-                        key={item.id} className="collapse collapse-arrow"
-                        data-aos="fade-right"
-                        data-aos-delay={1900 + (index + 1) * 150}
-                    >
-                        <input type="radio" name="my-accordion-2" />
-                        <div
-                            className="collapse-title text-[18px] lg:text-[20px] xl:text-[25px] font-medium px-0"
-                        >
-                            {item.title}
-                        </div>
-                        <div className="collapse-content px-0 pr-[30px] md:pr-[100px] lg:pr-[150px]">
-                            <p
-                                className="text-[15px] lg:text-[16px] xl:text-[18px] font-normal"
-                            >
-                                {item.text}
-                            </p>
-                        </div>
-                    </div>
+                {data?.accordion?.length > 0 && data.accordion.map((item, index) => (
+                    <Accordion key={item.id} open={open === index + 1} icon={<Icon id={index + 1} open={open} />} className={``} data-aos="fade-right" data-aos-delay={1900 + (index + 1) * 150}>
+                        <AccordionHeader onClick={() => handleOpen(index + 1)} className="border-b-0">
+                            <div className="text-[17px] lg:text-[18px] xl:text-[22px] font-medium px-0 text-white">
+                                {item.header}
+                            </div>
+                        </AccordionHeader>
+                        <AccordionBody className="text-white pt-0">
+                            <div className="px-0 pr-[30px] md:pr-[100px] lg:pr-[150px]">
+                                <p className="text-[14px] lg:text-[15px] xl:text-[16px] font-normal" style={{ lineHeight: "26px" }} >
+                                    {item.content}
+                                </p>
+                            </div>
+                        </AccordionBody>
+                    </Accordion>
                 ))}
             </div>
         </section>

@@ -7,6 +7,7 @@ import Info from "../../components/Info";
 import FreeConsultation from "../../components/FreeConsultation";
 import { framelessGlazing_data, framelessGlazing_data_images } from "../../services/framelessGlazing/framelessGlazing_data";
 import StructuresModal from "../../components/StructuresModal";
+import { about_data } from "../../services/framelessGlazing/about";
 import Modal from "../../components/Modal";
 import ContentModal from "./components/ContentModal";
 import heroList from "../../assets/heroList.svg";
@@ -94,7 +95,7 @@ const FramelessGlazing = () => {
 
             {/* info */}
             <Info
-                title="Безрамное остекление"
+                data={about_data}
             />
 
             {/* slide */}

@@ -242,7 +242,7 @@ function Service() {
                     </div>
                     <div className="mt-[20px] lg:mt-[55px] w-full flex flex-col gap-4 ">
                         {data?.length > 0 && data.map((item, index) => (
-                            <Accordion open={open === index + 1} icon={<Icon id={index + 1} open={open} />} className={`${open === index + 1 ? 'bg-white' : 'bg-transparent'} px-4`}>
+                            <Accordion key={item.id} open={open === index + 1} icon={<Icon id={index + 1} open={open} />} className={`${open === index + 1 ? 'bg-white' : 'bg-transparent'} px-4`}>
                                 <AccordionHeader onClick={() => handleOpen(index + 1)} className="border-b-0">
                                     <div className="text-[18px] lg:text-[20px] xl:text-[21px] font-semibold px-0 text-left">
                                         {item.title}
